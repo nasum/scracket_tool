@@ -4,7 +4,7 @@ include FileManager
 
 module DBConnector
   def self.connect(query, host, user, pass)
-    client = Mysql2::Client.new(host: host, user: user, password: pass)
+    client = create_client(host, user, pass)
     results = client.query(query)
     results.each do |row|
       puts "--------------------"
@@ -13,5 +13,20 @@ module DBConnector
         FileManager.save_image(value)
       end
     end
+  end
+
+  def self.show_tables(db_name, host, user, pass)
+    client = create_client(host, user, pass)
+    results = client.query("show tables from #{db_name}")
+
+    results.each do |row|
+      puts row
+    end
+  end
+
+  private
+
+  def self.create_client(host, user, pass)
+    Mysql2::Client.new(host: host, user: user, password: pass)
   end
 end
