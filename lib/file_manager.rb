@@ -1,5 +1,5 @@
 require "open-uri"
-require "FileUtils"
+require "fileutils"
 
 module FileManager
   def self.save_image(url)
