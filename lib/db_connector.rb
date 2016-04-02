@@ -20,7 +20,7 @@ module DBConnector
     results = client.query("show tables from #{db_name}")
 
     results.each do |row|
-      puts row
+      puts row.values
     end
   end
 
