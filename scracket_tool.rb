@@ -7,14 +7,20 @@ class ScracketTool < Thor
     puts "Hello #{name}"
   end
 
-  desc "show-tables DB", "show table"
-  def show_tables(db_name, host, user, pass)
-    DBConnector.show_tables(db_name, host, user, pass)
+  desc "show-tables DBNAME", "show table"
+  option :h
+  option :u
+  option :p
+  def show_tables(db_name)
+    DBConnector.show_tables(db_name, options[:h], options[:u], options[:p])
   end
 
   desc "images QUERY", "image download"
-  def images(query, host, user, pass)
-    DBConnector.connect(query, host, user, pass)
+  option :h
+  option :u
+  option :p
+  def images(query)
+    DBConnector.connect(query, options[:h], options[:u], options[:p])
   end
 end
 
