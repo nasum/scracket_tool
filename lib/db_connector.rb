@@ -27,6 +27,6 @@ module DBConnector
   private
 
   def self.create_client(host, user, pass)
-    Mysql2::Client.new(host: host, user: user, password: pass)
+    Mysql2::Client.new(host: host, username: user, password: pass)
   end
 end
